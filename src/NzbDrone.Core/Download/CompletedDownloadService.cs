@@ -1,9 +1,7 @@
 using System.IO;
 using System.Linq;
-using NLog;
 using NzbDrone.Common.EnvironmentInfo;
 using NzbDrone.Common.Extensions;
-using NzbDrone.Core.Configuration;
 using NzbDrone.Core.Download.TrackedDownloads;
 using NzbDrone.Core.History;
 using NzbDrone.Core.MediaFiles;
@@ -108,7 +106,7 @@ namespace NzbDrone.Core.Download
 
             var allMoviesImported = importResults.Where(c => c.Result == ImportResultType.Imported)
                                        .Select(c => c.ImportDecision.LocalMovie.Movie)
-                                       .Count() >= 1;
+                                       .Any();
 
             if (allMoviesImported)
             {
